@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36221.1 d17.14
+VisualStudioVersion = 17.14.36221.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Editor_Window", "Editor_Window\Editor_Window.vcxproj", "{568F7DEA-ED28-40DA-B14B-CC2096447552}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JCBEngine_Window", "JCBEngine_Window\JCBEngine_Window.vcxproj", "{5C671A4D-AC02-4474-87B2-43AEB2E16B9F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JCBEngine_Source", "JCBEngine_Source\JCBEngine_Source.vcxitems", "{46B00FD5-C996-47E2-949E-D653376BB7DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,11 +25,23 @@ Global
 		{568F7DEA-ED28-40DA-B14B-CC2096447552}.Release|x64.Build.0 = Release|x64
 		{568F7DEA-ED28-40DA-B14B-CC2096447552}.Release|x86.ActiveCfg = Release|Win32
 		{568F7DEA-ED28-40DA-B14B-CC2096447552}.Release|x86.Build.0 = Release|Win32
+		{5C671A4D-AC02-4474-87B2-43AEB2E16B9F}.Debug|x64.ActiveCfg = Debug|x64
+		{5C671A4D-AC02-4474-87B2-43AEB2E16B9F}.Debug|x64.Build.0 = Debug|x64
+		{5C671A4D-AC02-4474-87B2-43AEB2E16B9F}.Debug|x86.ActiveCfg = Debug|Win32
+		{5C671A4D-AC02-4474-87B2-43AEB2E16B9F}.Debug|x86.Build.0 = Debug|Win32
+		{5C671A4D-AC02-4474-87B2-43AEB2E16B9F}.Release|x64.ActiveCfg = Release|x64
+		{5C671A4D-AC02-4474-87B2-43AEB2E16B9F}.Release|x64.Build.0 = Release|x64
+		{5C671A4D-AC02-4474-87B2-43AEB2E16B9F}.Release|x86.ActiveCfg = Release|Win32
+		{5C671A4D-AC02-4474-87B2-43AEB2E16B9F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DE125F51-5B96-4051-9D80-B2333CBE6D76}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		JCBEngine_Source\JCBEngine_Source.vcxitems*{46b00fd5-c996-47e2-949e-d653376bb7dd}*SharedItemsImports = 9
+		JCBEngine_Source\JCBEngine_Source.vcxitems*{5c671a4d-ac02-4474-87b2-43aeb2e16b9f}*SharedItemsImports = 4
 	EndGlobalSection
 EndGlobal

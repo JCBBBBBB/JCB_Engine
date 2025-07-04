@@ -3,6 +3,7 @@
 
 #include "framework.h"
 #include "Editor_Window.h"
+#include "..\\JCBEngine_Source\\jApplication.h"
 
 #define MAX_LOADSTRING 100
 
@@ -17,10 +18,10 @@ BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
-int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
-                     _In_opt_ HINSTANCE hPrevInstance,
-                     _In_ LPWSTR    lpCmdLine,
-                     _In_ int       nCmdShow)
+int APIENTRY wWinMain(_In_ HINSTANCE hInstance,  // 프로그램의 인스턴스 핸들
+                     _In_opt_ HINSTANCE hPrevInstance, // 바로 전에 실행된 인스턴스 핸들
+                     _In_ LPWSTR    lpCmdLine, // 명령행으로 입력된 프로그램 인수
+                     _In_ int       nCmdShow) // 프로그램 실행될 형태, 모양 정보 등이 전달됨
 {
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
@@ -40,19 +41,44 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_EDITORWINDOW));
 
+    Application app1;
+    app1.Test();
+
     MSG msg;
 
-    // 기본 메시지 루프입니다:
-    while (GetMessage(&msg, nullptr, 0, 0))
+    while (true)
     {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE)) // 메세지 있으면 true 반환
         {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
+            if (msg.message == WM_QUIT) //메세지가 QUIT이면
+            {
+                break;
+            }
+
+            if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg)) // 메세지
+            {
+                TranslateMessage(&msg);
+                DispatchMessage(&msg);
+            }
+        }
+        else // 메세지 없으므로 false 반환
+        {
+            //여기서 게임로직 실행됨
         }
     }
+    return (int)msg.wParam;
 
-    return (int) msg.wParam;
+
+    // 기본 메시지 루프입니다:
+    //while (GetMessage(&msg, nullptr, 0, 0))
+    //{
+    //    if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+    //    {
+    //        TranslateMessage(&msg);
+    //        DispatchMessage(&msg);
+    //    }
+    //}
+
 }
 //깃허브 추가
 
@@ -147,6 +173,23 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
+
+            HBRUSH blueBrush = (HBRUSH)CreateSolidBrush(RGB(255, 255, 255));
+            HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, blueBrush);
+
+            HPEN greenPen = (HPEN)CreatePen(PS_SOLID, 2, RGB(0, 255, 0));
+            HPEN oldPen = (HPEN)SelectObject(hdc, greenPen);
+
+            Rectangle(hdc, 100, 100, 200, 200);
+
+            SelectObject(hdc, oldBrush);
+            SelectObject(hdc, oldPen);
+
+            Rectangle(hdc, 300, 300, 400, 400);
+
+            DeleteObject(blueBrush);
+            DeleteObject(greenPen);
+  
             EndPaint(hWnd, &ps);
         }
         break;
