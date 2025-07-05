@@ -11,6 +11,7 @@
 HINSTANCE hInst;                                // 현재 인스턴스입니다.
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
+JCB::Application application;
 
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -41,9 +42,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,  // 프로그램의 인스턴스
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_EDITORWINDOW));
 
-    Application app1;
-    app1.Test();
-
     MSG msg;
 
     while (true)
@@ -63,24 +61,15 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,  // 프로그램의 인스턴스
         }
         else // 메세지 없으므로 false 반환
         {
-            //여기서 게임로직 실행됨
+            application.Run(); //여기서 게임로직 실행됨
         }
     }
     return (int)msg.wParam;
 
 
-    // 기본 메시지 루프입니다:
-    //while (GetMessage(&msg, nullptr, 0, 0))
-    //{
-    //    if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
-    //    {
-    //        TranslateMessage(&msg);
-    //        DispatchMessage(&msg);
-    //    }
-    //}
 
 }
-//깃허브 추가
+
 
 
 //
@@ -125,6 +114,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+
+   application.Init(hWnd); // Init 함수에서 핸들을 매개변수로 받는다
 
    if (!hWnd)
    {
@@ -174,21 +165,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             HDC hdc = BeginPaint(hWnd, &ps);
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
 
-            HBRUSH blueBrush = (HBRUSH)CreateSolidBrush(RGB(255, 255, 255));
-            HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, blueBrush);
-
-            HPEN greenPen = (HPEN)CreatePen(PS_SOLID, 2, RGB(0, 255, 0));
-            HPEN oldPen = (HPEN)SelectObject(hdc, greenPen);
-
-            Rectangle(hdc, 100, 100, 200, 200);
-
-            SelectObject(hdc, oldBrush);
-            SelectObject(hdc, oldPen);
-
-            Rectangle(hdc, 300, 300, 400, 400);
-
-            DeleteObject(blueBrush);
-            DeleteObject(greenPen);
   
             EndPaint(hWnd, &ps);
         }
