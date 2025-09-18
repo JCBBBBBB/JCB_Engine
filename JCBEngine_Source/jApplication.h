@@ -1,6 +1,8 @@
 #pragma once
 
 #include "pch.h"
+#include "GameObject.h"
+#include "GameObject1.h"
 
 namespace JCB
 {
@@ -12,6 +14,7 @@ namespace JCB
 
 		void Init(HWND hwnd);
 		void Run();
+
 		void Update();
 		void LateUpdate();
 		void Render();
@@ -20,6 +23,8 @@ namespace JCB
 	private:
 		HWND mHWnd;
 		HDC mHdc;
-		float mX,mY;
+		
+		GameObject mPlayer;
+		GameObject1 mPlayer1;
 	};
 }

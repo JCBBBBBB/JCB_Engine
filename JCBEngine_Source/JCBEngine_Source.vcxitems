@@ -14,10 +14,14 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameObject1.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jApplication.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameObject1.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jApplication.cpp" />
   </ItemGroup>
 </Project>
