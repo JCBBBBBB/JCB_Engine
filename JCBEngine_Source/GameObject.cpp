@@ -1,4 +1,6 @@
 #include "GameObject.h"
+#include "Input.h"
+#include "DeltaTime.h"
 
 namespace JCB
 {
@@ -15,25 +17,47 @@ namespace JCB
 
 	void GameObject::Update()
 	{
-		if (GetAsyncKeyState(VK_UP) & 0x8000)
+		float speed = 100.0f;
+
+		if(Input::GetKey(KeyCode::A))
 		{
-			mY -= 0.01f;
+			mX -= speed * Time::GetDeltaTime();
 		}
 
-		if (GetAsyncKeyState(VK_DOWN) & 0x8000)
+		if (Input::GetKey(KeyCode::D))
 		{
-			mY += 0.01f;
+			mX += speed * Time::GetDeltaTime();
 		}
 
-		if (GetAsyncKeyState(VK_LEFT) & 0x8000)
+		if (Input::GetKey(KeyCode::W))
 		{
-			mX -= 0.01f;
+			mY -= speed * Time::GetDeltaTime();
 		}
 
-		if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
+		if (Input::GetKey(KeyCode::S))
 		{
-			mX += 0.01f;
+			mY += speed * Time::GetDeltaTime();
 		}
+
+		//if (GetAsyncKeyState(VK_UP) & 0x8000)
+		//{
+		//	mY -= 0.01f;
+		//}
+
+		//if (GetAsyncKeyState(VK_DOWN) & 0x8000)
+		//{
+		//	mY += 0.01f;
+		//}
+
+		//if (GetAsyncKeyState(VK_LEFT) & 0x8000)
+		//{
+		//	mX -= 0.01f;
+		//}
+
+		//if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
+		//{
+		//	mX += 0.01f;
+		//}
 	}
 
 	void GameObject::LateUpdate()
@@ -43,7 +67,7 @@ namespace JCB
 
 	void GameObject::Render(HDC hdc)
 	{
-		HBRUSH redBrush = (HBRUSH)CreateSolidBrush(RGB(255, 0, 0)); // 喉风宏矾浆 积己
+		HBRUSH redBrush = (HBRUSH)CreateSolidBrush(RGB(255, 255, 0)); // 喉风宏矾浆 积己
 
 		HPEN bluePen = (HPEN)CreatePen(PS_SOLID, 2, RGB(0, 0 , 255)); // greenPen 积己
 

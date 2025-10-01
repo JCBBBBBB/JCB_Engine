@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "Editor_Window.h"
 #include "..\\JCBEngine_Source\\jApplication.h"
+#include "..\\JCBEngine_Window\\LoadScene.h"
 
 #define MAX_LOADSTRING 100
 
@@ -112,10 +113,13 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
-   HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+   const UINT width = 1600;
+   const UINT height = 900;
 
-   application.Init(hWnd); // Init 함수에서 핸들을 매개변수로 받는다
+   HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
+      CW_USEDEFAULT, 0, width, height, nullptr, nullptr, hInstance, nullptr);
+
+   application.Init(hWnd, width, height); // Init 함수에서 핸들을 매개변수로 받는다
 
    if (!hWnd)
    {
@@ -124,6 +128,10 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
+
+   // load scenes
+
+
 
    return TRUE;
 }

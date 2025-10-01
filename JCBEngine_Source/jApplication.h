@@ -2,7 +2,7 @@
 
 #include "pch.h"
 #include "GameObject.h"
-#include "GameObject1.h"
+
 
 namespace JCB
 {
@@ -12,7 +12,13 @@ namespace JCB
 		Application();
 		~Application();
 
-		void Init(HWND hwnd);
+		void clearRenderTarget();
+		void copyRenderTarget(HDC source, HDC dest);
+		void adjustWindowRect(HWND hwnd, UINT width, UINT height);
+		void CreateBuffer(UINT width, UINT height);
+		void InitializeEtc();
+
+		void Init(HWND hwnd, UINT width, UINT height);
 		void Run();
 
 		void Update();
@@ -24,7 +30,12 @@ namespace JCB
 		HWND mHWnd;
 		HDC mHdc;
 		
+		HDC mBackHdc;
+		HBITMAP mBackBuffer;
+
 		GameObject mPlayer;
-		GameObject1 mPlayer1;
+
+		float mWidth;
+		float mHeight;
 	};
 }
